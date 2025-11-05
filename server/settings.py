@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 # server/server/settings.py
 from pathlib import Path
-
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'dev-secret-key'  # dev only
@@ -56,14 +56,18 @@ TEMPLATES = [{
 
 WSGI_APPLICATION = 'server.wsgi.application'
 
-DATABASES = {  # SQLite for dev
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {  # SQLite for dev
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # CORS (allow React dev server)
 CORS_ALLOW_ALL_ORIGINS = True  # dev only
