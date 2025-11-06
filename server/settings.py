@@ -57,7 +57,7 @@ TEMPLATES = [{
     },
 }]
 
-WSGI_APPLICATION = 'server.wsgi.application'
+WSGI_APPLICATION = "api.wsgi.app"
 
 # DATABASES = {  # SQLite for dev
 #     'default': {
