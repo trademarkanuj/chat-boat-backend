@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'dev-secret-key'  # dev only
 DEBUG = True
-ALLOWED_HOSTS = ['*']  # dev only
+ALLOWED_HOSTS = ['*',"127.0.0.1", ".vercel.app", "localhost"]  # dev only
 
 INSTALLED_APPS = [
     'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes',
@@ -25,17 +25,20 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'chat',
+    "django.contrib.staticfiles",
 ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # must be high in the list
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware", 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'server.urls'
@@ -63,11 +66,12 @@ WSGI_APPLICATION = 'server.wsgi.application'
 #     }
 # }
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles" 
 STATIC_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'media')
 
+WHITENOISE_USE_FINDERS = True
 
 # CORS (allow React dev server)
 CORS_ALLOW_ALL_ORIGINS = True  # dev only
