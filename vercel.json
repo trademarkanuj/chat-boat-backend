@@ -4,10 +4,5 @@
   "routes": [
     { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
     { "src": "/(.*)", "dest": "/server/api/wsgi.py" }
-  ],
-  "functions": {
-    "server/api/**/*.py": {
-      "runtime": "python3.12"
-    }
-  }
+  ]
 }
