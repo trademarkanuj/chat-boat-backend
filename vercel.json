@@ -1,8 +1,13 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pip install -r requirements.txt && python ${PWD}/server/manage.py collectstatic --noinput || true",
+  "version": 2,
+  "builds": [
+    { "src": "server/wsgi.py", "use": "@vercel/python" }
+  ],
   "routes": [
-    { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
-    { "src": "/(.*)", "dest": "/server/api/wsgi.py" }
-  ]
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/(.*)", "dest": "server/wsgi.py" }
+  ],
+  "env": {
+    "PYTHONUNBUFFERED": "1"
+  }
 }
