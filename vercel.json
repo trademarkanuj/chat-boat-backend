@@ -1,10 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "functions": {
-    "**/*.py": {
-      "excludeFiles": "{tests/**,__tests__/**,**/*.test.py,**/test_*.py,fixtures/**,__fixtures__/**,static/**,assets/**}"
-    }
-  },
   "buildCommand": "pip install -r requirements.txt && python manage.py collectstatic --noinput || true",
   "routes": [
     { "src": "/static/(.*)", "dest": "/staticfiles/$1" },
